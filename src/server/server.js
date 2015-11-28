@@ -1,11 +1,13 @@
 import app from './index';
-import { expressPort } from '../config';
+import { express } from '../config';
 
-app.listen(expressPort, (error) => {
+const { host, port } = express;
+
+app.listen(port, host, (error) => {
   if (error) {
     console.error(error);
     process.exit(10);
   }
 
-  console.log(`express is listening on http://localhost:${expressPort}`);
+  console.log(`express is listening on http://${host}:${port}`);
 });
