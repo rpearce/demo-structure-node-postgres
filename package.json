@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build:js": "browserify -t babelify src/client/browser.js -o src/public/app.js",
-    "start": "nodemon",
+    "dev": "nodemon --debug",
+    "start": "forever start index.js",
+    "stop": "forever stop index.js",
     "test": "find ./src -name '*.test.js' | xargs mocha --require ./mocha-babel.js --recursive ./src"
   },
   "repository": {
@@ -27,9 +29,12 @@
     "babel-preset-stage-0": "^6.1.18",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
+    "db-migrate": "^0.9.23",
     "express": "^4.13.3",
+    "forever": "^0.15.1",
     "history": "^1.13.1",
     "nodemon": "^1.8.1",
+    "pg-promise": "^2.8.5",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^1.0.0"
