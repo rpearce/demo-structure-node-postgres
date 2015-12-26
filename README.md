@@ -5,7 +5,10 @@ Reservations app written in node/express
 1. Clone/fork this repository
 1. `cd` in to the project folder
 1. `npm install`
-1. `npm start`
+1. Start it
+  * `npm run dev` to run it in development mode (uses `nodemon` to watch for changes to `src/`)
+  * `npm start` (FOR PRODUCTION: starts up `forever` daemon)
+  * `npm stop` (FOR PRODUCTION: stops `forever` daemon)
 1. Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Contribute
@@ -18,7 +21,13 @@ Reservations app written in node/express
 1. Create a pull request from your branch to this repo's master
 1. When all is merged, pull down the upstream changes to your master
 
-## Usage
+## Development
+
+### Start the Dev Server
+This will trigger `nodemon` to automatically watch the `src/` directory for changes:
+```
+$ npm run dev
+```
 
 ### Creating a New Migration
 ```
