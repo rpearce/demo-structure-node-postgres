@@ -1,28 +1,22 @@
-import db from '../../db/';
+import pgPromise from 'pg-promise';
+import connection from '../../db/connection';
 
-const defaults = {
-  name: null,
-  email: null,
-  networkId: null,
-  isValid() {
-    return !!this.name
-      && !!this.email
-      && !!this.network_id;
+export const isValid = ({ name, email, networkId, image, updatedAt }) =>
+  !!name && !!email && !!networkId;
+
+export const create = (attrs) => {
+  if (isValid(attrs)) {
+    let pgp = pgPromise(),
+        db = pgp(connection),
+        { name, email, image, networkId } = attrs;
+    console.log(db);
+    db
+      .query('INSERT INTO users(name, email, image, network_id) VALUES ($1, $2, $3, $4)', [name, email, image, networkId])
+      .then(data => console.log(data))
+      .catch(err => console.error(err))
+      .then(pgp.end);
+  } else {
+    console.error('Invalid User');
+    return false;
   }
-  save() {
-    if (this.isValid()) {
-      db
-        .one('INSERT INTO users(name, email, network_id) VALUES ($1, $2, $3)', [this.name, this.email, this.networkId])
-        .then(data => console.log(data))
-        .catch(err => console.error(error));
-    } else {
-      console.error('Invalid User');
-    }
-  }
-};
-
-const user = (opts) => {
-  return Object.assign(Object.create(defaults), opts);
-};
-
-export default user;
+}
