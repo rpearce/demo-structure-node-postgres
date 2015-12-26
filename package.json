@@ -30,6 +30,7 @@
     "express": "^4.13.3",
     "history": "^1.13.1",
     "nodemon": "^1.8.1",
+    "pg-promise": "^2.8.5",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^1.0.0"
