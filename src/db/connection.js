@@ -1,9 +1,5 @@
-const devConnection = {
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'reservations_development',
-  user: '',
-  password: ''
-};
+import dbInfo from './database';
 
-export default process.env.DATABASE_URL || devConnection;
+const { host, port, database, user, password } = dbInfo.dev;
+
+export default process.env.DATABASE_URL || { host, port, database, user, password };

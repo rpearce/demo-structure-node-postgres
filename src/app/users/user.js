@@ -9,7 +9,6 @@ export const create = (attrs) => {
     let pgp = pgPromise(),
         db = pgp(connection),
         { name, email, image, networkId } = attrs;
-    console.log(db);
     db
       .query('INSERT INTO users(name, email, image, network_id) VALUES ($1, $2, $3, $4)', [name, email, image, networkId])
       .then(data => console.log(data))
