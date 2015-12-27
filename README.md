@@ -5,6 +5,8 @@ Reservations app written in node/express
 1. Clone/fork this repository
 1. `cd` in to the project folder
 1. `npm install`
+1. `npm run db:create`
+1. `npm run db:migrate`
 1. Start it
   * `npm run dev` to run it in development mode (uses `nodemon` to watch for changes to `src/`)
   * `npm start` (FOR PRODUCTION: starts up `forever` daemon)
@@ -22,6 +24,20 @@ Reservations app written in node/express
 1. When all is merged, pull down the upstream changes to your master
 
 ## Development
+
+### Database creation and migration
+Drop the development and test databases
+```
+$ npm run db:drop
+```
+Create the development and test databases
+```
+$ npm run db:create
+```
+Migrate the development and test databases
+```
+$ npm run db:migrate
+```
 
 ### Start the Dev Server
 This will trigger `nodemon` to automatically watch the `src/` directory for changes:
