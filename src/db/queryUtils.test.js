@@ -29,7 +29,7 @@ describe('Query Utils', () => {
       }
     });
 
-    it('catches errors from the DB', async (done) => {
+    it('catches a failed insert', async (done) => {
       try {
         await create({ table: 'users', attrs: { name: null, email: faker.internet.email(), network_id: faker.random.uuid() } });
       } catch (err) {
@@ -79,7 +79,75 @@ describe('Query Utils', () => {
     });
   });
 
-  describe('update', () => {});
+  describe('update', () => {
+    const name = faker.name.findName(),
+          email = faker.internet.email(),
+          network_id = faker.random.uuid();
 
-  describe('destroy', () => {});
+    beforeEach(async (done) => {
+      try {
+        await create({ table: 'users', attrs: { name, email, network_id } });
+        done();
+      } catch (err) {
+        console.error(err);
+        done();
+      }
+    });
+
+    it('updates the record successfully', async (done) => {
+      try {
+        const res = await find({ table: 'users', where: { email } });
+        expect(res[0].name).to.equal(name);
+
+        const newName = faker.name.findName();
+        await update({ table: 'users', where: { email }, attrs: { name: newName } })
+
+        const res2 = await find({ table: 'users', where: { email } });
+        expect(res2[0].name).to.equal(newName);
+        done();
+      } catch (err) {
+        console.error(err);
+        done();
+      }
+    });
+
+    it('catches a failed update', async (done) => {
+      try {
+        await update({ table: 'users', where: { email }, attrs: { name: null } })
+      } catch (err) {
+        expect(err.name).to.equal('error');
+        done();
+      }
+    });
+  });
+
+  describe('destroy', async (done) => {
+    const name = faker.name.findName(),
+          email = faker.internet.email(),
+          network_id = faker.random.uuid();
+
+    beforeEach(async (done) => {
+      try {
+        await create({ table: 'users', attrs: { name, email, network_id } });
+        done();
+      } catch (err) {
+        console.error(err);
+        done();
+      }
+    });
+
+    it('deletes a record given a condition', async (done) => {
+      try {
+        const res = await find({ table: 'users', where: { email } });
+        expect(res.length).to.equal(1);
+        await destroy({ table: 'users', where: { id: res[0].id } });
+        const res2 = await find({ table: 'users', where: { email } });
+        expect(res2.length).to.equal(0);
+        done();
+      } catch (err) {
+        console.error(err);
+        done();
+      }
+    });
+  });
 });
