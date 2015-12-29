@@ -1,9 +1,11 @@
 import { expect } from 'chai';
+import faker from 'faker';
 import { isValid } from './user';
 
-const name = 'Robert',
-      email = 'test@robert.com',
-      network_id = 'b9dee03c-daf6-4656-9643-c93d78fe5758';
+
+const name = faker.name.findName(),
+      email = faker.internet.email(),
+      network_id = faker.random.uuid();
 
 describe('User', () => {
   describe('isValid', () => {
