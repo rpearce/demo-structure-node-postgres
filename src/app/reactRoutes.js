@@ -1,16 +1,21 @@
 import React from 'react';
 import Root from './Root.react';
 import Index from './Index.react';
-import Example from './Example.react';
+import SignIn from './sessions/views/SignIn.react';
+import CheckEmail from './sessions/views/CheckEmail.react';
 
 const routes = {
   IndexRoute: {
     component: Index
   },
-  ExampleRoute: {
-    path: 'example',
-    component: Example
+  SignInRoute: {
+    path: 'signin',
+    component: SignIn
   },
+  CheckEmailRoute: {
+    path: 'signin/check-email',
+    component: CheckEmail
+  }
 };
 
 const getChildRoutes = () => {

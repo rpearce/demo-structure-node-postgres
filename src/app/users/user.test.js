@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import faker from 'faker';
-import { isValid } from './user';
+import { isValidUser } from './user';
 
 
 const name = faker.name.findName(),
@@ -8,18 +8,18 @@ const name = faker.name.findName(),
       network_id = faker.random.uuid();
 
 describe('User', () => {
-  describe('isValid', () => {
+  describe('isValidUser', () => {
     it('is valid when required attrs are present', () => {
-      expect(isValid({ name, email, network_id })).to.equal(true);
+      expect(isValidUser({ name, email, network_id })).to.equal(true);
     });
     it('is invalid when name is blank', () => {
-      expect(isValid({ name: '', email, network_id })).to.equal(false);
+      expect(isValidUser({ name: '', email, network_id })).to.equal(false);
     });
     it('is invalid when email is blank', () => {
-      expect(isValid({ name, email: '', network_id })).to.equal(false);
+      expect(isValidUser({ name, email: '', network_id })).to.equal(false);
     });
     it('is invalid when networkId is blank', () => {
-      expect(isValid({ name, email, network_id: '' })).to.equal(false);
+      expect(isValidUser({ name, email, network_id: '' })).to.equal(false);
     });
   });
 });

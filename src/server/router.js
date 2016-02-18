@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
-import routes from '../app/routes';
+import routes from '../app/reactRoutes';
 import app from './index';
 
-export default function handleMatch(req, res, next) {
+const matchRoute = (req, res, next) => {
   const location = req.path;
   match({ routes, location }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -20,3 +20,5 @@ export default function handleMatch(req, res, next) {
     }
   });
 }
+
+export default matchRoute;

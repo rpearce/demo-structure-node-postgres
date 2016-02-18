@@ -79,6 +79,9 @@ describe('Query Utils', () => {
     });
   });
 
+  describe('findOrCreate', () => {
+  });
+
   describe('update', () => {
     const name = faker.name.findName(),
           email = faker.internet.email(),

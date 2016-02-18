@@ -23712,42 +23712,6 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Example = function Example() {
-  return _react2.default.createElement(
-    'main',
-    { role: 'main' },
-    _react2.default.createElement(
-      'header',
-      null,
-      _react2.default.createElement(
-        'h1',
-        null,
-        'Example'
-      )
-    )
-  );
-};
-
-Example.meta = {
-  title: 'Example',
-  description: 'This is the example'
-};
-
-exports.default = Example;
-
-},{"react":207}],210:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var Index = function Index() {
   return _react2.default.createElement(
     'main',
@@ -23771,7 +23735,7 @@ Index.meta = {
 
 exports.default = Index;
 
-},{"react":207}],211:[function(require,module,exports){
+},{"react":207}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23784,7 +23748,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _routes = require('./routes');
+var _reactRoutes = require('./reactRoutes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23793,6 +23757,7 @@ var Root = function Root(_ref) {
   var _children$type$meta = children.type.meta;
   var title = _children$type$meta.title;
   var description = _children$type$meta.description;
+  //<script src="/app.js" async></script>
 
   return _react2.default.createElement(
     'html',
@@ -23833,22 +23798,21 @@ var Root = function Root(_ref) {
               null,
               _react2.default.createElement(
                 _reactRouter.Link,
-                { to: (0, _routes.path)('ExampleRoute') },
-                'Example'
+                { to: (0, _reactRoutes.path)('SignInRoute') },
+                'Sign In'
               )
             )
           )
         )
       ),
-      children,
-      _react2.default.createElement('script', { src: '/app.js', async: true })
+      children
     )
   );
 };
 
 exports.default = Root;
 
-},{"./routes":212,"react":207,"react-router":74}],212:[function(require,module,exports){
+},{"./reactRoutes":211,"react":207,"react-router":74}],211:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23868,9 +23832,13 @@ var _Index = require('./Index.react');
 
 var _Index2 = _interopRequireDefault(_Index);
 
-var _Example = require('./Example.react');
+var _SignIn = require('./sessions/views/SignIn.react');
 
-var _Example2 = _interopRequireDefault(_Example);
+var _SignIn2 = _interopRequireDefault(_SignIn);
+
+var _CheckEmail = require('./sessions/views/CheckEmail.react');
+
+var _CheckEmail2 = _interopRequireDefault(_CheckEmail);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23878,9 +23846,13 @@ var routes = {
   IndexRoute: {
     component: _Index2.default
   },
-  ExampleRoute: {
-    path: 'example',
-    component: _Example2.default
+  SignInRoute: {
+    path: 'signin',
+    component: _SignIn2.default
+  },
+  CheckEmailRoute: {
+    path: 'signin/check-email',
+    component: _CheckEmail2.default
   }
 };
 
@@ -23905,7 +23877,129 @@ exports.default = {
   childRoutes: getChildRoutes()
 };
 
-},{"./Example.react":209,"./Index.react":210,"./Root.react":211,"react":207}],213:[function(require,module,exports){
+},{"./Index.react":209,"./Root.react":210,"./sessions/views/CheckEmail.react":212,"./sessions/views/SignIn.react":213,"react":207}],212:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CheckEmail = function CheckEmail() {
+  return _react2.default.createElement(
+    'main',
+    { role: 'main' },
+    _react2.default.createElement(
+      'header',
+      null,
+      _react2.default.createElement(
+        'h1',
+        null,
+        'Check Email'
+      )
+    )
+  );
+};
+
+CheckEmail.meta = {
+  title: 'Check Email',
+  description: 'Check email'
+};
+
+exports.default = CheckEmail;
+
+},{"react":207}],213:[function(require,module,exports){
+"use strict";
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignIn = (function (_Component) {
+  _inherits(SignIn, _Component);
+
+  function SignIn() {
+    _classCallCheck(this, SignIn);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignIn).apply(this, arguments));
+  }
+
+  _createClass(SignIn, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "main",
+        { role: "main", "aria-labelledby": "title" },
+        _react2.default.createElement(
+          "header",
+          null,
+          _react2.default.createElement(
+            "h1",
+            { id: "title" },
+            "Sign In or Sign Up"
+          )
+        ),
+        _react2.default.createElement(
+          "section",
+          null,
+          _react2.default.createElement(
+            "form",
+            { action: "/signin", method: "POST" },
+            _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "label",
+                { htmlFor: "email" },
+                "Email"
+              ),
+              _react2.default.createElement("input", { id: "email", type: "email", maxLength: "254", name: "email", placeholder: "you@example.com" })
+            ),
+            _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "button",
+                { type: "submit" },
+                "Sign In or Sign Up"
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SignIn;
+})(_react.Component);
+
+SignIn.meta = {
+  title: 'Sign In or Sign Up',
+  description: 'Sign in or Sign Up'
+};
+
+exports.default = SignIn;
+
+},{"react":207}],214:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -23922,16 +24016,16 @@ var _createBrowserHistory = require('history/lib/createBrowserHistory');
 
 var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
-var _routes = require('../app/routes');
+var _reactRoutes = require('../app/reactRoutes');
 
-var _routes2 = _interopRequireDefault(_routes);
+var _reactRoutes2 = _interopRequireDefault(_reactRoutes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRouter2.default,
   { history: (0, _createBrowserHistory2.default)() },
-  _routes2.default
+  _reactRoutes2.default
 ), document);
 
-},{"../app/routes":212,"history/lib/createBrowserHistory":36,"react":207,"react-dom":54,"react-router":74}]},{},[213]);
+},{"../app/reactRoutes":211,"history/lib/createBrowserHistory":36,"react":207,"react-dom":54,"react-router":74}]},{},[214]);
