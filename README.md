@@ -1,5 +1,5 @@
-# reservations
-Reservations app written in node/express
+# demo-structure-node-postgres
+Note: this should not be used by anybody. Demo only.
 
 ## Setup
 1. Clone/fork this repository
